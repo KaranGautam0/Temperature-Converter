@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .conataner {
+      background-color: white;
+      width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 10px;
+      background-color: black;
+      color: white;
+      font-size: 1.2rem;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    label {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="conataner">
+    <div class="header">
+      <h2>Temperature Converter</h2>
+    </div>
+    <div class="Celsius">
+      <label for="Celsius-lable">Enter Temperature in Celsius</label>
+      <input type="text" id="Celsius" placeholder="Enter Temperature in Celsius">
+    </div>
+    <div class="Kelvin">
+      <label for="Kelvin-lable">Enter Temperature in Kelvin</label>
+      <input type="text" id="Kelvin" placeholder="Enter Temperature in Kelvin">
+    </div>
+    <div class="Farenheit">
+      <label for="Farenheit-lable">Enter Temperature in Farenheit</label>
+      <input type="text" id="Farenheit" placeholder="Enter Temperature in Farenheit">
+    </div>
+  </div>
+
+  <script>
+    const Celsius = document.querySelector('#Celsius');
+    const Kelvin = document.querySelector('#Kelvin');
+    const Farenheit = document.querySelector('#Farenheit');
+
+    //Celsius to Farenheit =( 0*C * 9/5) + 32 = 32*F
+    //Celsius to Kelvin = )*C + 273.15K
+    Celsius.addEventListener('input', () => {
+      let C = parseFloat(Celsius.value);
+      let F = (C * 9 / 5) + 32;
+      let K = C + 273.15;
+
+      Farenheit.value = F;
+      Kelvin.value = K;
+    })
+
+    // Farenheit to celsius => (32*F - 32) * 5/9 = 0*C
+    // Farenheit to Kelvin => (32*F - 32) * 5/9 + 273.15 = 273.15 * K
+    Farenheit.addEventListener('input', () => {
+      let F = parseFloat(Farenheit.value);
+      let C = (F - 32) * 9 / 5;
+      let K = (F - 32) * 9 / 5 + 273.15;
+
+      Celsius.value = C;
+      Kelvin.value = K;
+    })
+
+
+    // Kelvin to calcius =>  0K - 273.15 = - 273.1 *C
+    // kelvin to faranheit => (0k - 273.15) * 9/5 + 32 = -459.7*F
+    Kelvin.addEventListener('input', () => {
+      let K = parseFloat(Kelvin.value);
+      let C = K - 273.15;
+      let F = (K - 273.15) * 9 / 5 + 32;
+      Celsius.value = C;
+      Farenheit.value = F;
+    })
+
+
+
+  </script>
+</body>
+
+</html>
